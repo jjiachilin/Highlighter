@@ -5,7 +5,7 @@ during a live Zoom meeting from user marked timestamps.
 
 ## What it does
 Our current iteration is a bare bones prototype command line interface. To use our project the user must first record timestamps during the 
-live meeting and then download the audio transcript later to generate the summaries. Below displays usage:
+live meeting and then download the audio transcript later to generate the summaries. The steps are outlined below:
 
 0. first install requirements.txt
 ```
