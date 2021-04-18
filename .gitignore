@@ -1,2 +1,3 @@
 venv
 ts_recordings/
+__pycache__

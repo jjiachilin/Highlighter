@@ -11,7 +11,7 @@ def record_ts(fh, ls_time):
     fh.write(str(delta_time)[:-7] + "\n")
 
 def main():
-    print("Hightlighter has started...")
+    print("Highlighter has started...")
     ls_time = datetime.now()
 
     while True:

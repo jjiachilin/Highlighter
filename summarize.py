@@ -1,37 +1,36 @@
 import sys
-import os
+import parse
+import summary
+
+def get_selected_text(a, b):
+    return ["lmao", "hi"]
+
+def get_key_point(a):
+    return "ayyyyyy"
 
 def main():
-    if len(sys.argv) < 2:
-        print("Error: please specify a transcript file in the command line argument")
-        return
-    elif len(sys.argv) > 2:
-        print("Error: Please specify only one transcript file")
-        return
+    if len(sys.argv) != 3:
+        raise Exception("Usage: python summarize.py <timestamp_file> <transcript_file>")
 
-    # reads in the relative path to the file
-    cur_path = os.path.dirname(__file__)
-    new_path = os.path.join(cur_path, sys.argv[1])
+    _, timestamp_path, transcript_path = sys.argv
+    transcript_json = parse.get_transcript_json(transcript_path)
+    selected_texts = get_selected_text(timestamp_path, transcript_json)
 
-    try:
-        fh = open(new_path, 'r')
-    except IOError:
-        print("Error opening the specified to read")
+    key_points = []
+    for selected_text in selected_texts:
+        key_point = [get_summary(selected_text), get_keywords(selected_text)]
+        key_points.append(key_point)
 
-    ts_list = fh.readlines()
-    # maps the absolute timestamp to the transcript time stamp
-    # don't know how to do that yet
-    # for ts in ts_list:
-    # use ts.strip() to remove the new line char
-
-    # after getting the texts from the transcript time stamp
-    # send them into OpenAI to summarize
-
-    # output to a text file of the summary
-
-    fh.close()
-    
-
+    with open("output.txt", "w") as f:
+        for i in range(0, len(selected_texts)):
+            f.write("Selected Texts:\n")
+            f.write(selected_texts[i])
+            f.write("\n\n")
+            f.write("Summary:\n")
+            f.write(key_points[i][0])
+            f.write("Keywords:\n")
+            f.write(key_points[i][1])
+            f.write("\n\n")
 
 if __name__ == '__main__':
     main()
