@@ -1,0 +1,4798 @@
+all right
+
+welcome back to uh 161
+
+uh fundamentals of ai this is our
+
+lecture six and today we will be talking
+
+about
+
+the subject of constrained satisfaction
+
+we will look at a class of problems
+
+known as constraint satisfaction
+
+problems
+
+or csvs and
+
+we will see how they get formulated
+
+in a standard way as a search problem
+
+and they lead to
+
+a particular choice of search
+
+strategy this is a very important
+
+class of problems because of its
+
+large set of applications in fact i did
+
+mention
+
+earlier you can take a whole class
+
+typically graduate class
+
+dedicated to constrained satisfaction
+
+problem
+
+there is a conference that is dedicated
+
+to constrained satisfaction and even a
+
+scientific society that is just
+
+basically targeted constraint
+
+satisfaction so it's a very important
+
+thing
+
+and and you're going to see today that
+
+again this is a very
+
+algorithmic nature kind of subject
+
+the concepts that we will talk about are
+
+very fundamental
+
+and they have a you know broad
+
+applicability
+
+uh today's lecture will be all on the
+
+white board
+
+uh so as usual i'm gonna go ahead and
+
+turn my camera off and head to the
+
+whiteboard so we can
+
+start our discussion all right
+
+okay so we'll talk about constraint
+
+satisfaction
+
+and
+
+these are also known as constrained
+
+satisfaction problems
+
+or csps
+
+and the structure of our lecture today
+
+is going to be as follows
+
+initially we will look at
+
+how we can do or formulate this as
+
+search
+
+in the terms that we've looked at
+
+before and then
+
+we will look at the standard
+
+search strategy there is a particular
+
+search strategy
+
+that we discussed which just suggests
+
+itself for these kind of problems
+
+and then what we'll do is which is the
+
+bulk of the lecture
+
+will be improvements on this
+
+search strategy which are basically
+
+targeted towards constraint satisfaction
+
+problem and actually there's quite a bit
+
+of these i think uh
+
+there is six total
+
+and each one of these improvements is
+
+actually
+
+a fundamental idea uh
+
+so uh you'll see it's actually
+
+quite interesting and uh and fun
+
+and when you start adding these
+
+improvements we're gonna go over
+
+one over you know after the other uh
+
+by the end you're gonna get something
+
+pretty substantial and sophisticated
+
+as far as what you can do uh with the
+
+techniques that we will
+
+discuss all right so
+
+what is the constraint transaction
+
+problem now we alluded to this earlier
+
+we talked about the end queen's problem
+
+we'll look at some
+
+more concrete examples today
+
+but let's go ahead and uh
+
+let's see we're not erasing this to
+
+you
+
+all right so for constraint satisfaction
+
+problems
+
+they're defined pretty simply
+
+in the following way
+
+we have basically a set of variables
+
+so we'll discuss it first abstractly and
+
+then immediately we'll see some examples
+
+so we have a set of variables let's call
+
+them x1 through xn
+
+and each one of these guys
+
+can take values um
+
+let's call these d1 through the end
+
+so each one of these is a set of values
+
+that
+
+the variable can take so the one set of
+
+values that
+
+x1 can take and here we're talking about
+
+discrete
+
+uh variables so these are discrete
+
+values
+
+and then on top of that you just have a
+
+set of constraints
+
+now these constraints
+
+basically um
+
+can be thought of as allowable
+
+combinations of values
+
+so what i want you to do
+
+is find an assignment
+
+of values to the variables for each
+
+variable x1 through xn
+
+assign it a value from the corresponding
+
+domain
+
+we call this also a domain for
+
+the corresponding variable so i wanted
+
+to find a value for each variable
+
+without violating the constraints that i
+
+gave you
+
+that's pretty much it and abstractly
+
+it is a very simple
+
+class of problems to state but as we
+
+mentioned has significant
+
+applications a lot of problems can be
+
+formulated this way and you have an
+
+efficient way for solving this problem
+
+then you can really do a whole lot
+
+let's take a look at an example and
+
+we looked at in queens before i'm going
+
+to use another example here
+
+which is
+
+from map coloring
+
+which is
+
+a famous example to illustrate uh
+
+constrained satisfaction problems so
+
+let's see this guy and
+
+we look at this particular map
+
+all right so this is a map for
+
+which country this is a map for which
+
+which country anybody wants to say
+
+australia very good so this is australia
+
+and what we do
+
+here is we have these regions
+
+or states and let's basically
+
+uh abbreviate them so we use the very
+
+revenge so this is wa
+
+this is nt
+
+and this is q and here let's say
+
+s a and this guy is ms w
+
+and this is v and this is t all right
+
+so in the map coloring problem uh
+
+what you have is a number of colors that
+
+you can use
+
+to color a particular state or region
+
+and in this case we have
+
+red and we have blue
+
+and we have green all right so each one
+
+of these could be colored with
+
+one of these so in this situation every
+
+variable has the same domain
+
+all right so think of this as your
+
+domain but it's shared across all
+
+variables doesn't have to be in general
+
+and i want to assign a color to each
+
+state
+
+and the constraint here is that adjacent
+
+states cannot have the same color that's
+
+basically it so if you look at it from
+
+our formulation um
+
+viewpoints so the variables that we have
+
+are basically
+
+we can think of them as these states so
+
+we have this variable
+
+and we have that variable and so on
+
+and we can think of each one of these
+
+variables as
+
+taking a value from these three colors
+
+so this is you can think of this as
+
+x i and d i is the same for
+
+all of them which is red
+
+blue and green
+
+okay and again what is the solution
+
+ah let's go over the constraints so what
+
+are the constraints the constraints
+
+in this case would take the following
+
+form
+
+for every adjacent um states that say w
+
+a and nt they're not the same so we're
+
+gonna have this guy not equal
+
+to that guy similarly
+
+we will have this guy not equal to
+
+that guy and so on all right and that's
+
+basically
+
+it serve variables which has a domain
+
+and then a set of constraints find me an
+
+assignment of
+
+values to the variables which satisfy
+
+these constraints
+
+and in this case one particular solution
+
+to this problem would be let's take a
+
+look
+
+we can color this guy red here
+
+we can color this guy red as well
+
+and let's color this one red as well
+
+okay that would be one way of doing it
+
+and
+
+this can take the value green
+
+and this can take the very green here
+
+and what else is left uh this i can give
+
+it
+
+the very green as well and i'm just left
+
+with one guy which is unless i can give
+
+it the color blue
+
+all right so i assigned one two three
+
+four five six
+
+seven values and i don't believe in this
+
+case that any constraint has been
+
+violated
+
+so this would be a solution so if we if
+
+we're looking at this notion of a
+
+solution of a constraint satisfaction
+
+problem
+
+you would go ahead and write that the
+
+solution is
+
+that um and let's keep it
+
+that w a has the value red
+
+that nt has the value green
+
+and so on all right so this guy has the
+
+value blue
+
+uh q has the value red and then as w has
+
+the value green
+
+v has the value red and finally p has
+
+the value
+
+okay this is what the solution would
+
+look like pretty simply
+
+uh an assignment of values to variables
+
+i hope this is very clear okay so
+
+um a very simple problem to state
+
+abstractly
+
+and um
+
+a lot of lots of practical applications
+
+you can say a lot about this and how to
+
+solve that okay let's do
+
+one more concept related to constraint
+
+satisfaction
+
+and then i'll show you another very
+
+famous example
+
+of a constrained satisfaction problem
+
+that you may have heard of before
+
+but the next couple of concepts i want
+
+to mention
+
+on this before we move on
+
+is this notion of
+
+what we call a constraint graph right
+
+so
+
+let me go ahead and
+
+show you this notion
+
+and again let's bring a copy of this
+
+map again
+
+okay and let me put it here on the side
+
+so the constraint graph is
+
+an abstraction of a constraint
+
+satisfaction problem
+
+and i'll show you visually now so this
+
+is the
+
+constraint graph so what we do
+
+in this particular case is
+
+for every variable we end up adding a
+
+node
+
+so in this case we have these uh seven
+
+variables
+
+and here i'm gonna go ahead and add a
+
+node in the graph for each one of them
+
+and then what you'll do after that is
+
+that
+
+if two variables are involved in the
+
+same
+
+constraints then we go and put an edge
+
+between them
+
+right so these are my seven variables
+
+and let's see this guy and that guy are
+
+involved in a constraint because they
+
+cannot be colored the same
+
+so i end up putting this edge between
+
+these two guys
+
+this guy and that guy are also involved
+
+in the constraints nt and q
+
+so i add an edge between them and so on
+
+so if you go ahead and add
+
+edges between variables that
+
+are involved in the same constraint then
+
+you will get
+
+this particular graph all right and we
+
+call this the constrained
+
+graph sometimes it's called
+
+the primal graph because
+
+in general there are other ways to
+
+construct
+
+graphs for a set of constraints this is
+
+the primal graph of the constraint
+
+satisfaction problem
+
+we're not going to go over other types
+
+of graphs this is enough for us to
+
+illustrate some concepts
+
+we're going to get back to this later
+
+now you're going to tell me so why do we
+
+care
+
+it's pretty picture but why is this
+
+significant well
+
+it turns out that depending on this
+
+graph and its properties we can
+
+sometimes
+
+say certain things about our ability to
+
+solve this problem so one of the things
+
+we'll end up with
+
+today hopefully if we have enough time
+
+is the following result
+
+which basically says if
+
+the constraint graph
+
+is a tree so it doesn't have loop
+
+loops this is not a tree okay but if the
+
+constraint
+
+graph is a tree then
+
+the csp can be
+
+solved efficiently
+
+and efficiently here in particular
+
+in polynomial time in fact we will show
+
+you a simple algorithm
+
+uh to do that so in fact we'll even
+
+avoid doing search altogether
+
+and if the uh constraint graph is not a
+
+tree but does have some
+
+properties like being sparse in a
+
+certain way then you can also
+
+do fancy things as far as solving the
+
+constrained satisfaction problem okay so
+
+remember this concept we're going to get
+
+back to it at the end
+
+and we're going to show you how we can
+
+solve three csps
+
+pretty easily using a nice and simple
+
+algorithm that we will build the
+
+ingredients
+
+for as we go on all right
+
+the other general concept i want to
+
+mention before
+
+i go to the next concrete example
+
+is uh this notion of the
+
+types of constraints so there is
+
+um a distinction people make a
+
+distinction
+
+between types of constraints and
+
+let me mention here
+
+types of constraints
+
+there's two dimensions where people uh
+
+talk about
+
+the difference between constraints one
+
+of them is if you want to think is
+
+cardinality so
+
+people talk about unary constraints
+
+and these are the ones that involve a
+
+single variable
+
+so you may have i want this guy not to
+
+be colored green
+
+right that would be a unity constraint
+
+so another type is
+
+binary constraints
+
+and as you can imagine from the name
+
+these involve
+
+uh two variables and the previous
+
+problem we just looked at the map
+
+coloring is
+
+of this type every uh constraint
+
+involves two variables sometimes people
+
+say that what we have is a binary
+
+csp and you can have higher order
+
+constraints that involve multiple
+
+variables more than two
+
+um i will show you an example
+
+next of that the next problem we're
+
+going to be looking at
+
+does involve high order constraints
+
+now the other distinction among
+
+constraints that i want to mention
+
+is this notion of hard versus soft
+
+constraints
+
+right so there is hard constraints
+
+and our discussion today is restricted
+
+to these
+
+that means you must satisfy them and any
+
+solution cannot violate any of them
+
+period if you violate any of them if you
+
+give me a variable assign and then
+
+violate any of the constraints it's not
+
+a solution
+
+the other type is what people call soft
+
+constraints
+
+you can think of these as preferences
+
+so someone may say um i prefer
+
+red to green
+
+so if you have a choice you know go
+
+ahead and
+
+do red you know instead of green
+
+and sometimes people also have weights
+
+on constraints
+
+so that means that
+
+it's not essential to really satisfy
+
+them
+
+but here's constraint one
+
+and i'm gonna give it a weight of one
+
+and here's constraint
+
+um two i'm gonna give it
+
+a weight of two and so on and and the
+
+idea is
+
+fine you may not be able to satisfy all
+
+constraints
+
+but uh i want you to satisfy
+
+it you know to give me a variable
+
+assignments
+
+that optimizes or maximizes the weights
+
+of constraints so
+
+a constraint may have a weight of 100
+
+and another has a weight of 10
+
+and if you have to violate one of them
+
+then um
+
+go ahead and violate the one that has a
+
+weight of 10 because it's not as
+
+important as the one that has
+
+a value of a hundred or a weight of a
+
+hundred uh this becomes
+
+uh a problem of a little bit of a
+
+different nature
+
+we're not going to do this today we're
+
+going to just focus on hard constraints
+
+but i just wanted to mention this
+
+the techniques can be extended and you
+
+can use them to do soft constraints but
+
+that's another story it's beyond the
+
+scope of this course
+
+which is just an introduction to these
+
+kind of subjects
+
+all right folks let me mention one more
+
+a very important constraint satisfaction
+
+problem and as i told you it will
+
+involve
+
+higher order constraints
+
+and this is a problem that some of you
+
+may have heard of
+
+very famous and it is the satisfiability
+
+problem
+
+or what's known as sat
+
+i'm curious the
+
+the people here hear of sats the people
+
+here of the sad problem uh
+
+so someone said in 180 180 okay
+
+uh well let me say what it is
+
+first and i want to ask you the question
+
+when you typically hear about sad you uh
+
+hear about it
+
+in reference to something there's
+
+something pretty famous about this
+
+problem and let's defer this question
+
+until
+
+i tell you what the problem is for
+
+everyone so what we
+
+what we have here is as usual a set of
+
+variables
+
+and these variables let's call them x1
+
+through xn
+
+now the values that each variable can
+
+have is just
+
+two of them so there is the value true
+
+and the value false
+
+and sometimes people refer to this as
+
+one and this is zero
+
+and then you have constraints that look
+
+like this
+
+um
+
+okay this doesn't look good it says that
+
+my
+
+uh whiteboard is crashing
+
+so i'm gonna get rid of it
+
+and maybe we have to start another
+
+session give me give me a second guys
+
+here i'm having a technical issue
+
+with this guy
+
+um
+
+all right
+
+okay so
+
+i do hope you can see can you see
+
+now the whiteboard again
+
+uh okay so it crashed and i had to
+
+restart it
+
+uh sorry about this and let's
+
+hope it's not gonna cause
+
+other problems so let's say here we're
+
+gonna say
+
+we're talking about satisfiability
+
+or set and as we mentioned
+
+what we have here is basically a
+
+variables um and and there
+
+they have binary values
+
+and these variables are x1 through xn
+
+and as we mentioned
+
+uh the values that each can have is
+
+either true
+
+or false people call this one zero okay
+
+and the constraints
+
+look like this
+
+the constraints look like x1
+
+or not x2 or
+
+x4 this would be one constraint
+
+and another constraint might be x2
+
+or not um
+
+let's just say x5 and so on
+
+and the uh you may have seen or may not
+
+have seen these symbols this guy here
+
+which looks like a v
+
+is an or and this guy here is a not
+
+and what this first constraint says okay
+
+assign truth values to these variables
+
+each one of them should get the value of
+
+force and then what i want you
+
+is uh to make sure that uh either
+
+x1 is true or x2 is false or x4
+
+is true okay this one constrains another
+
+constraint is
+
+i want either x2 to be 2 or x5 to be
+
+true
+
+and so on and these kind of constraints
+
+here
+
+are called clauses um we're going to get
+
+to this
+
+uh in more detail later in logic
+
+uh because as you can imagine this is
+
+related to logical reasoning
+
+so in this case i have two clauses and
+
+of course i can have
+
+more and that's basically the
+
+sad problem it is a constraint
+
+satisfaction problem
+
+and as you can see the constraints here
+
+are not binary
+
+and you could have of any type this this
+
+one was binary two variables this had
+
+three
+
+you could have uh as many
+
+as you need for your problem you could
+
+have
+
+unary constraints that i want x7 to be
+
+false
+
+and so on now this set problem is famous
+
+for a reason
+
+anybody can tell me you said you heard
+
+about it in 180.
+
+can someone say something about what is
+
+so special about the set or what did you
+
+hear about it
+
+why was it mentioned in 180 tell me
+
+something about this problem
+
+uh okay this is what i expected
+
+someone said it is and be complete and
+
+this is something important we're going
+
+to mention before we move on
+
+so that you see the significance of what
+
+we're talking about so what does it mean
+
+to be and be
+
+complete and people are
+
+someone to say is being a bit more
+
+specific is saying
+
+that three sat is np
+
+complete uh a threesat refers
+
+to a sad problem where
+
+every constraint
+
+or every clause in our language has
+
+three variables
+
+right so this would fall into this
+
+category one two three
+
+that's like a constraint with three
+
+variables this is binary
+
+if if you restrict yourself to
+
+constraints
+
+that have uh that have size three
+
+that problem is already mp complete
+
+why is that distinction important
+
+because if a binary is add
+
+or two sad if the if every constraint
+
+has only two
+
+variables and those are easy you need uh
+
+these
+
+constraints of size three to make it a
+
+hard now let's quickly uh
+
+say why why is this significant and and
+
+then you'll see
+
+the what we'll talk about today how
+
+important it is from an algorithmic
+
+point of view
+
+the folks in computer theory
+
+have classified problems according to
+
+their difficulty
+
+so one of the very important classes of
+
+problems
+
+is a class known as np you can think of
+
+this
+
+as a very large set of problems that all
+
+have a
+
+similar nature and when you have a
+
+complexity class
+
+and you have a set of problems in it
+
+there's typically
+
+a set of problems in this class that are
+
+the hardest
+
+the hardest in the class okay so let's
+
+say
+
+these three happen to be the hardest in
+
+this class
+
+now what does it need to be hardest that
+
+means if you
+
+if you know how to solve these then you
+
+can solve everything else
+
+all right so let's call this problem x
+
+and this called problem y
+
+uh what you can do is you can reduce
+
+x to y which means that
+
+if i have a box that can solve the y
+
+problem and i have the x problem
+
+i can basically take it and convert it
+
+into a y
+
+problem and pass it to this box and the
+
+solution that i'm gonna get
+
+to the y problem i can convert it into a
+
+solution to the x problem
+
+right so um so there are these hardest
+
+problem in a complexity class and these
+
+are the problems that are complete for
+
+that
+
+class so they're called complete
+
+uh for that
+
+class okay this is an important concept
+
+and and sad happens to be an np complete
+
+that means
+
+it is a hardest problem in that
+
+complexity class so if i know how to do
+
+sat efficiently
+
+uh then i can use it to solve other and
+
+be complete problems using the notion of
+
+production now there is another
+
+important notion you should probably
+
+know about
+
+so beyond the notion of hardest which
+
+means that the problem is complete for
+
+the class in this case i have three of
+
+them
+
+that are hardest and so each one of them
+
+is
+
+complete for np but among these
+
+there is the notion of prototypical
+
+which means it's a representative of the
+
+class so
+
+among the np complete problems or the
+
+problems that are complete for the class
+
+there's
+
+one guy that's singled out as the
+
+representative of the class
+
+and we we say it's a prototypical for
+
+that and usually you end up picking the
+
+guy that is simplest in nature
+
+and seth happens to be the prototypical
+
+problem
+
+for np
+
+for mp so prototypical means
+
+complete but also the guide that i tend
+
+to choose from among those complete
+
+problems okay
+
+hopefully you can see how significant
+
+this is
+
+and let's now move on and talk about
+
+how are we actually gonna um solve these
+
+um uh constrained satisfaction problem
+
+and just to also mention before we move
+
+on
+
+among conservative faction problems
+
+sat is very special and i hope to see
+
+why
+
+to the extent that again i told you
+
+there's a conference for conscious
+
+inspection problems well there is a
+
+conference that's dedicated to sat
+
+and there is a big
+
+industry of researchers working on
+
+developing sat solvers what they call
+
+set solvers which
+
+solve this particular problem uh
+
+there is even uh uh international
+
+competition
+
+that takes place every two years uh
+
+where people bring their set solvers and
+
+see
+
+which soldier is doing the best
+
+and current set solvers can work with
+
+problems that have millions of
+
+constraints pretty easily
+
+so this is like a really big deal and
+
+the reason it got even more attention
+
+because people have very good reductions
+
+from various problems into sad so if you
+
+develop a set solver
+
+that's very efficient the impact is
+
+pretty
+
+big as far as what other things we can
+
+do
+
+all right guys so let's go now and
+
+see how can we formulate these problems
+
+uh using um our search
+
+framework and what particular search
+
+strategy we're gonna
+
+use to solve them uh which we will spend
+
+the next hour
+
+uh improving so
+
+uh someone says uh there's a question is
+
+typically chosen based
+
+on a criteria typically simplicity you
+
+try to find
+
+uh a simple problem so
+
+in in the class np there are so many
+
+other problems that are empty complete
+
+but some of them to state
+
+it will be a little bit more work than
+
+what we did here
+
+i mean you can see that is so easy to
+
+explain and some of the others
+
+uh tend to be harder but more generally
+
+i don't know where the origin of this
+
+started but
+
+you would find that a lot of the typical
+
+prototypical problems for complexity
+
+classes
+
+are actually based on boolean formulas
+
+so you can think of this as a boolean
+
+formula
+
+maybe we'll talk about this later when
+
+we do logic uh
+
+there is few other classes that are now
+
+receiving a lot of attention
+
+traditionally np was like the guy
+
+everybody talks about mp the only i mean
+
+people graduate with a
+
+undergraduate degree and maybe the only
+
+complexity class they've heard about
+
+uh is np or at least the one that's
+
+emphasized today
+
+there is another class that's getting a
+
+lot of attention
+
+and it's it's bigger than this okay i'm
+
+gonna put this circle here and it's
+
+called the class pp
+
+and that is related to probabilistic
+
+reasoning and machine learning
+
+uh and it happens also that the
+
+prototypical problem for it is based on
+
+uh self-formulas we'll get to this when
+
+we talk about logic actually
+
+uh it's prolonged a set solver then
+
+let's leave this till later we get to uh
+
+logic where we're gonna talk about
+
+prolog actually
+
+uh okay so uh let's
+
+we need to finish that formulation
+
+uh of this as search before we go to our
+
+break otherwise we're gonna be
+
+really behind folks remember
+
+uh we did allude to this discussion uh
+
+before
+
+about how do we formulate this as a
+
+search problem so the the basic idea
+
+is so this is okay csp as
+
+a search uh
+
+when we're doing a search problem or
+
+formulating a problem as a such problem
+
+you know what the ingredients we need
+
+right we need an initial state
+
+and we need a final state
+
+or a final state test
+
+sometimes i don't know what the final
+
+state
+
+is but i can tell you easily if you give
+
+me one i can check it
+
+i can't identify one but if you give me
+
+a candidate state i can tell you if this
+
+is a find it or not
+
+and that's actually what's going on here
+
+we can also say goal state and
+
+goal state and then we need our actions
+
+or successor function
+
+okay and then we have formulated a
+
+problem
+
+as uh search so what happens
+
+in constraint satisfaction and i'm i'm
+
+just gonna mention because we went over
+
+this
+
+before is that
+
+the notion of a state
+
+is basically a partial variable
+
+assignment
+
+all right so what this means is
+
+um you have n variables
+
+and if you assign a subset of them
+
+values i'm going to call this a state
+
+so the initial state in this case
+
+is basically the empty variable
+
+assignment
+
+all right so we we can do it like that
+
+and
+
+uh another variable assignment or
+
+another state could be something like
+
+uh give x the value true if we're doing
+
+sad
+
+give z the value false and
+
+that's it let's say in this case i do
+
+have x y z
+
+three variables all right so this would
+
+be a state it's a
+
+partial variable assignment uh another
+
+state which is complete in this case
+
+could be
+
+give x the value true give
+
+y the value false
+
+and uh give z the value false okay
+
+and this would be now a complete state
+
+uh it may be final or not but
+
+that's what's going on okay so it's
+
+pretty simple
+
+and then so what is an action in this
+
+case
+
+so i told you what a state is i even
+
+told you about the initial state
+
+so what would be an action in this case
+
+what are what are my set of actions if i
+
+give you a particular state like this
+
+one
+
+uh let me let me give you this state so
+
+the state is
+
+i'm just uh assigned the value y
+
+true that's it that's my state
+
+what would be the children of these what
+
+actions can i take of this particular
+
+state
+
+you tell me this and we're pretty much
+
+there as far okay assign a value to a
+
+given variable
+
+exactly uh flip the state of a variable
+
+no we're not going to do this
+
+i'm just going to take a state
+
+which assigns the values of some
+
+variables i'm going to assign one more
+
+variable now this notion of flipping is
+
+states something we're going to get to
+
+later
+
+but that's not um what we
+
+need to do here now someone said the
+
+successor should try to assign
+
+oh a remaining variable yes so basically
+
+in this
+
+guy here um
+
+you know uh well then tell me tell me
+
+then answer the question if this is the
+
+state
+
+and what we're doing is an action is
+
+take a state and assign one additional
+
+variable how many children will this guy
+
+have
+
+okay it's not true there is more
+
+how many children with this particular
+
+state have according to this formulation
+
+okay
+
+people are saying four why
+
+because uh i can take x
+
+and assign it the value 0 i can assign
+
+x to the value 1 but it i can also
+
+assign
+
+z so z could be a sign 0 or
+
+z could be a sign 1.
+
+all of these would be children so in
+
+this particular case the state that i'm
+
+going to get
+
+it's going to be y equals okay i'm
+
+mixing y
+
+mixing 2 and 1 0 and 4 but that's fine
+
+so y would be 1 and x would be 0 this
+
+would be the state and this state here
+
+would be
+
+y equals 1 and z equals
+
+0 and so on so that's
+
+what's happening uh
+
+so again someone is asking can i go
+
+ahead
+
+and do one more child
+
+where i simply take y and make it
+
+zero no we're not going to do this there
+
+is no point of doing this
+
+and in fact even what we just did here
+
+you'll see in just a second that it's
+
+actually an overkill so
+
+let's do that on the next slide so
+
+you'll see
+
+um you know we got in trouble by by
+
+doing what we're doing or not gotten
+
+trouble but there is a much better way
+
+of doing it
+
+so if if we're going with the same
+
+example
+
+of having these variables
+
+x y and z and the values
+
+uh being basically zero or one
+
+look what you guys or what we now
+
+suggested you're starting with
+
+the initial state which is the empty
+
+assignment
+
+and where what we discussed now you can
+
+assign a variable so you can assign
+
+either
+
+x y or z if you go and assign
+
+x you're gonna get two states right x
+
+equals zero
+
+and x equal one you could have two
+
+children
+
+also based on assigning y so this would
+
+be that and then two more children
+
+for assigning z so now i have six
+
+children
+
+for this first guy now if i go here
+
+and and we'll assume here we're
+
+assigning value
+
+variables in that order x y z if you do
+
+this you can have
+
+uh how many states for this guy this is
+
+what we just saw four of them
+
+because you can assign y equals zero y
+
+equals one z equals zero and z equals
+
+one
+
+and so on now pick this guy here
+
+how many children will this guy have
+
+help me out here how many children will
+
+this guy have the one i'm pointing to
+
+how many children give me a number two
+
+uh
+
+uh because in this case
+
+um i can go ahead and
+
+assign this y equals zero and y
+
+equals one and now i do have
+
+a full variable assignment so this
+
+assignment will be x
+
+equals zero um y
+
+equals zero and z equals one okay
+
+so here's i'm gonna do one more branch
+
+and then you're gonna tell me uh
+
+that i got uh
+
+and then you're gonna make an
+
+observation so thank you there was a
+
+typo here okay let's actually go and
+
+expand this branch here
+
+uh similarly i'm gonna have four
+
+children
+
+and i'm gonna do x
+
+equals zero x equals one
+
+and y equals zero y equals one
+
+and let me pick this last branch here
+
+and
+
+actually let me pick this branch here
+
+and then this would have two children
+
+here x equals
+
+sorry y equals zero and y equals one
+
+okay now
+
+uh tell me something about the search
+
+tree
+
+um there is something that's going on
+
+here so this is
+
+this is one potential solution okay
+
+in this three every leaf in this tree
+
+uh will be a potential solution would be
+
+a complete variable sign
+
+now let's look at this branch here
+
+going down z equals one uh
+
+x equals zero and y equals zero let's
+
+let's look at this guy here what is the
+
+passion variable assignment here it is x
+
+equals 0
+
+y equals 0 and z equals 1.
+
+uh-huh can you
+
+see what's going on here there
+
+are different leaf nodes
+
+that correspond to the same state
+
+here i went and assigned x0 z1
+
+y0 i got to this guy
+
+and here i went and did z 1 and then x 0
+
+and y 0 i got to the
+
+this guy so there's a lot of repetition
+
+as far as the leaf nodes of the search
+
+tree
+
+that duplicate states and that's pretty
+
+bad
+
+in fact uh the one thing that you
+
+probably also
+
+observed that the depth of this tree is
+
+what
+
+what is the depth of this three the one
+
+that we just built uh
+
+it is three but it happens to be also
+
+the number of variables
+
+so if we say the number of variables is
+
+uh n then uh
+
+this three is has a finite depth
+
+right which is n so that's one thing but
+
+again
+
+it has duplicate notes in fact if you do
+
+a count and this is something
+
+that you should try at home if the
+
+number of variables
+
+is n and the number of values
+
+uh let's call it d small d
+
+so in this case um in this case
+
+n equals three and d equals two
+
+then you will see that this tree that we
+
+just built
+
+will have n factorial
+
+d to the n leaves
+
+okay that's a very large number now let
+
+me ask you a question
+
+how many distinct states do we have in
+
+this case
+
+a state here is a an assignment of
+
+values to variables
+
+and uh you 8
+
+so people are saying 8. now if you
+
+evaluate this
+
+you're gonna get 48 but give me an
+
+expression in terms of
+
+d and n an expression in terms of d and
+
+n for how many uh
+
+leaves i'm gonna have if
+
+uh i have how many distinct states do i
+
+have if i have n variables and each one
+
+of them can pay take
+
+precisely d values
+
+and people are saying two to the d
+
+d to the n yes it would be two
+
+d to the n distinct states
+
+okay that's the number that i really
+
+have
+
+this number is way much smaller than
+
+that so in this case
+
+uh 2 and 3 this would be
+
+2 to the 3 which is a the number of
+
+really distinct
+
+assignments 2 3 variables where every
+
+variable can take one of two values
+
+this is a battery it is looking at
+
+something with a lot of redundancy
+
+and it turns out you can simplify this
+
+and build the tree using a similar
+
+style but while ensuring that there are
+
+no duplicate
+
+leaves and let me show you this quickly
+
+and then
+
+[Music]
+
+and then we can take our brain all right
+
+so again
+
+the problem with this is too many leaves
+
+in the sense that
+
+they there are replicated states and i
+
+want to try to avoid that
+
+and the basic idea is is the following
+
+the basic idea is let's say you pick a
+
+certain variable ordering
+
+all right and this variable ordering is
+
+in this case let's say xyz okay
+
+and then what you do is you have your
+
+initial state
+
+which is the the empty one no variable
+
+assignments
+
+and then you pick a variable and only
+
+assign values to that value
+
+so in this case i'm going to say i'm
+
+picking x because that's what i'm
+
+using for the order and you say x is
+
+true x is false
+
+let's do 1 and x 0.
+
+and then for this node you just take
+
+the next variable in the order which is
+
+y and you do y
+
+and then let's say you know this and
+
+similarly here i'm going to do
+
+y equals 1 y equals 0.
+
+so the next variable to assign is z
+
+and then i go ahead and do z
+
+and then z1 z0
+
+um z equals one z equals zero and so on
+
+okay well
+
+look what happened a huge difference
+
+and now these are my leaves each one of
+
+these guys correspond to
+
+a complete variable assignment so if you
+
+pick this guy here
+
+you're going to find that this is x
+
+equals 1
+
+y equals 0 and z equals one
+
+no duplicates these are all distinct
+
+each one of these corresponds to a
+
+distinct state there is no
+
+uh duplicates and in fact in this case
+
+there is eight of them
+
+which happens to be two to the three but
+
+in general
+
+as people said it would be d to the n
+
+which is the number of leaves
+
+in this particular state which also
+
+happens to be the number of distinct
+
+variable assigned
+
+all right now that's a big big progress
+
+and this is the standard formulation of
+
+ca
+
+csps this is the standard stage 3 that
+
+people look at
+
+and you can see can make this
+
+significantly
+
+better as we will do now just before we
+
+take our break
+
+let me ask a quick question so we settle
+
+what we're going to do here because when
+
+we come back we're going to talk about
+
+uh improvements
+
+this is finite similar to what we did
+
+before
+
+the depth of this guy is n
+
+which is the number of variables
+
+and what am i doing i'm i'm gonna try to
+
+find
+
+uh one of these leaves right i'm trying
+
+to find one of these guys that satisfy
+
+my constraints i'm gonna
+
+another way is i'm trying to find if any
+
+of these guys
+
+is is uh my goal state uh state that
+
+satisfies all
+
+constraints and i'm gonna be doing this
+
+by searching
+
+this three to you know effectively visit
+
+these until i find
+
+one that satisfies the constraints uh
+
+what search strategy should i use in
+
+this case
+
+what's our strategy we looked at so many
+
+and there is one that suggests itself in
+
+this case
+
+and i already see one two three answers
+
+that says
+
+depth first search and indeed
+
+that's the method of choice
+
+depth research one of the greatest thing
+
+about it is its space complexity
+
+and depth first search
+
+will not get in trouble here because the
+
+search tree is finite
+
+so if i run depth first search on this i
+
+will
+
+in principle be able to visit each one
+
+of these
+
+if this happened to be the solution and
+
+i'm doing depth first
+
+dot dot i'm gonna go like this
+
+eventually i'm gonna hit it
+
+if it happens to be this i'm also
+
+guaranteed to get to it i'm not gonna
+
+miss a solution if one exists
+
+so it is the obvious choice in this case
+
+and indeed it is that first search that
+
+we use on these
+
+trees and right there is no notion of
+
+optimality here i just need to find the
+
+state that satisfy the constraints so
+
+any of them is as good as the other
+
+and that is just the beginning
+
+um
+
+so what we will do now is take our break
+
+and we will come back we're gonna see a
+
+ton of
+
+improvements on this guy now this is
+
+this is not good enough this is not
+
+going to do anything interesting
+
+when we come back we're going to look at
+
+a slew of techniques
+
+that will turn this into something real
+
+that can really solve a very substantial
+
+problem
+
+okay let's take our break and come back
+
+at
+
+11 folks thank you
+
+well let's get back to our discussion
+
+and
+
+uh well i laid out a lot of maps
+
+during the but we'll see what we're
+
+going to do here okay
+
+so we we saw the standard formulation
+
+of sele as a search problem
+
+okay we saw the search term and it's
+
+pretty systematic
+
+we mentioned that the choice of
+
+social strategy is step first that's the
+
+baseline so what we're going to do next
+
+is
+
+look at improvements
+
+of
+
+so look at improvements of depth first
+
+search cs fields and
+
+actually there's six of them i don't
+
+know if we're gonna be able to go over
+
+all of them
+
+uh today but they're gonna be one
+
+two three four five uh six
+
+and actually number six is not an
+
+improvement but it's more of a different
+
+way of solving
+
+uh csvs that are three structure
+
+but we're gonna look at these five and
+
+the very first one is what we're gonna
+
+start with now
+
+it's pretty simple and
+
+the idea is that
+
+when you saw the search tree um
+
+it was exponentially sized and you can
+
+do something extremely simple that
+
+reduces the size of the search tree that
+
+you're going to explore pretty
+
+significantly
+
+and the idea is the following and let's
+
+illustrate it on this
+
+map coloring example
+
+the point is that
+
+you can uh limit the number of children
+
+that you will generate using the
+
+following idea so
+
+ignore everything for the top note so
+
+now we're trying to
+
+solve this problem and i'm going to
+
+start by coloring this guy so i'm
+
+picking this particular value
+
+variable to color first so the
+
+possible um values
+
+that i can give there's three of them
+
+and
+
+this could be i could color this red or
+
+i could color this
+
+basically green or i could color it
+
+blue so what we did here is effectively
+
+picked
+
+a variable and decided to assign it
+
+a color and
+
+then let's pick this guy here
+
+and now we want to look at its children
+
+we're generating the three remember
+
+every
+
+opinion has three values so if we do it
+
+like we did it before then every
+
+node in the tree will have three
+
+children however
+
+if you look at this particular situation
+
+and you go to this guy
+
+and uh so i'm taking this
+
+and now trying to basically
+
+add another color to it i'm trying to
+
+color now this guy
+
+so i can go and color it green this is
+
+one choice
+
+um or i could color it
+
+blue right so these are the two children
+
+now
+
+in principle i suppose to have a third
+
+child
+
+in which i color this guy red but if i
+
+do
+
+i immediately violate a constraint that
+
+says that these two states cannot have
+
+the same color
+
+so there's no point objecting this guy
+
+now if i generate it and i do everything
+
+below it
+
+what's the point everything here as far
+
+as the leaf node
+
+will not be a solution and i know this
+
+already
+
+because if i were to assign this red
+
+here i'm already violating the string so
+
+this idea of
+
+do not generate children
+
+that you already know will violate the
+
+constraints because
+
+remember i do not need
+
+a full variable assignment to
+
+decide whether i violated the
+
+constraints sometimes by partially
+
+assigning values
+
+you may know that you already violated
+
+constraints so there is no point
+
+of in that particular case
+
+generating the children and similarly
+
+for this guy
+
+let's say now we're going to go ahead
+
+and assign
+
+uh this
+
+third variable here and i'll find myself
+
+only having to worry about two children
+
+that case right so uh what i'm doing
+
+here is i'm
+
+taking this guy and let's me see
+
+i had this strap and this red
+
+and this was already green and this was
+
+really green and i'm assigning
+
+the last guy so i can do
+
+red here or i can do blue
+
+but the uh last guy here which is
+
+uh basically green
+
+that i'm not gonna generate
+
+okay so that's that's what the
+
+three would look like and then what
+
+happens is
+
+you're doing depth search
+
+and
+
+right and then not generating children
+
+that
+
+fire exercise by the way people refer to
+
+this as
+
+backtracking
+
+backtrack or search
+
+so it's basically depth first
+
+search that's another name for depth
+
+first search applied in this particular
+
+context
+
+okay so when you use depth first search
+
+on this kind of search trees
+
+and then you avoid generating children
+
+that violate constraints
+
+that search like it's called backtrack
+
+search okay it's another name for
+
+depth research in this particular
+
+context okay
+
+this already changes the picture
+
+considerably
+
+as far as um
+
+what happens uh with with depth
+
+depth first search now the next
+
+two things we're gonna look at
+
+and you will be surprised of how again
+
+simple and effective they tend to be
+
+is the notion of a value
+
+ordering and the notion of
+
+a variable ordering
+
+all right so we will talk about them
+
+together
+
+because conceptually they fit in the
+
+same you know
+
+category and then the last two
+
+techniques also fit in their own
+
+category as far as improvements
+
+so let's go take a look at this notion
+
+of value and variable ordering
+
+and before we do this
+
+let me also tell you roughly what these
+
+guys are doing
+
+if you see what we just did now with
+
+number one where we just said
+
+do not generate children that
+
+violate the constraints violation was
+
+done
+
+in a very simple way i just uh
+
+you know checked the constraints one by
+
+one and said is this constraint still
+
+okay
+
+this constraint is still okay and in
+
+case one of them was violated i said i'm
+
+not interested in the state
+
+these guys do more sophisticated check
+
+of violations
+
+more sophisticated
+
+checks of violation what does that mean
+
+that means if let me remember them uh
+
+this guy as
+
+a in terms of detecting violation and
+
+this sb
+
+and this sc what's going to happen is a
+
+already
+
+told me one way of checking violations
+
+and avoiding
+
+exploring states b which is number four
+
+on our list
+
+will detect violations that a cannot
+
+detect so amy look at something and say
+
+this is good yeah keep going b will tell
+
+you no stop
+
+i'm telling you this will never turn
+
+into a solution this partial assignment
+
+will never be made into a solution so
+
+drop it
+
+and c which is number five on our list
+
+does even
+
+more fine grained detection so it will
+
+see things that b
+
+cannot see going from a to b
+
+to c we are increasing our ability to
+
+detect failures or to detect that
+
+certain partial assignments are already
+
+bad and as you can imagine
+
+as you go from a to b to c you're doing
+
+more work each time
+
+and even let me give you names for these
+
+guys so we can make discussion a little
+
+bit more concrete
+
+this is called forward checking
+
+technique called forward checking very
+
+simple you'll see it
+
+and this technique here is going to be
+
+called art consistency
+
+but again i just want you to see the big
+
+picture before we dive into the details
+
+because the
+
+conception is a very simple uh and
+
+uniform picture
+
+abc are all about detecting failures
+
+early
+
+just dropping the pursuant of certain
+
+states
+
+because you know upfront that nothing
+
+below them will end up being a solution
+
+okay let's go to two and three now and
+
+talk about variable and value ordering
+
+before we get to the uh rest
+
+and uh
+
+here we are variable and value ordering
+
+this is an
+
+entertaining story um
+
+and i'm gonna illustrate it to you by a
+
+visualization first
+
+okay and um
+
+in this visualization i'm gonna be
+
+looking at
+
+a problem from sat so i have the three
+
+variables
+
+x and y and z and as we know the values
+
+are 0 1 and look what's going to happen
+
+here
+
+i will go ahead and okay and the
+
+constraints i have
+
+uh i have two constraints one of them
+
+says i want
+
+x to be equal to y and the other one
+
+says i want y to be
+
+equal to z okay
+
+and look what i'm going to do here i'm
+
+going to draw the search tree in two
+
+different ways and you tell me what in
+
+in both cases so this
+
+h3 is going to always look like this
+
+um
+
+and here's what i'm doing
+
+so i'm gonna have two versions of this
+
+okay
+
+and the other version is this guy
+
+now you're telling me wait a minute they
+
+already looked exactly the same
+
+not really they're gonna look different
+
+in just a second
+
+okay so these two guys you guys the guys
+
+okay so i'm using the order xzy
+
+and i'm assigning these values now let's
+
+go and assign the
+
+values so uh for this guy it's going to
+
+be 0
+
+1 0 1 0 1
+
+one so you don't want no one
+
+okay here it's gonna be um
+
+still zero one here and zero one
+
+okay now here i'm gonna do
+
+one new one and here i'm gonna
+
+do zero one zero okay what happened here
+
+what's the difference between these two
+
+guys uh
+
+i'm expanding so this is the search tree
+
+the full search tree
+
+the variable order in both of them is
+
+xzy
+
+the the difference is though is
+
+in uh which values i assigned first
+
+so you can see here it was 0 1 this was
+
+1 0
+
+and
+
+that was one difference can someone tell
+
+me um
+
+a difference between these two in terms
+
+of practical implications if you run
+
+uh depth search on these what happens
+
+uh maybe i will help you how many
+
+solutions do i have to this problem
+
+let's start with that how many solutions
+
+do i have to this problem
+
+x y z and i want x to be equal to y and
+
+i want y to be equal to z how many
+
+solutions do i have to this problem
+
+how many of the eight states will
+
+satisfy the constraints
+
+uh people are saying two and in fact
+
+yes so basically the two solutions are
+
+x equals y equals z equals zero and the
+
+other solution is x equals y
+
+equals z equals one right so they're all
+
+zero and all one that's the only two
+
+solutions look at this three here
+
+and and let's see which ones are the
+
+solutions this is a solution
+
+this is a solution and all of the others
+
+are not
+
+okay now let's look here what happened
+
+uh this is the solution this is not this
+
+is not this is not and
+
+this is not a solution this is not a
+
+solution this is not a solution
+
+and this is the other let me mark the
+
+two solutions in green
+
+so that they're even more visible here
+
+they are
+
+okay i hope now you see what's going on
+
+and and what's the point of doing this
+
+because it's just so significant to see
+
+what's going on
+
+what happened if i'm doing
+
+depth search on this guy let's call this
+
+guy here
+
+uh a and call this guy b
+
+if i'm doing the depth first search on b
+
+i'm going down this path
+
+and doom already i hit the solution and
+
+i'm done
+
+if i'm doing this guy here um i'm going
+
+to go
+
+so a i'm going to go down here and i'm
+
+going to get a hit this point it's not a
+
+solution i backtrack
+
+i come to this guy it's not a solution i
+
+backtrack
+
+come down this way it's not a solution
+
+backtrack and then i found solution
+
+so where would i do more work a
+
+or b if i'm running depth first search
+
+on this
+
+which one would you prefer a or b
+
+you prefer b right because had a
+
+solution quicker
+
+and and terminate now what's the
+
+difference between a and b
+
+i want two words that
+
+describe the difference between a and b
+
+what happened
+
+what's the difference between a and b
+
+value ordering when i picked a variable
+
+and in this case this guy here let's
+
+mark it
+
+z here and z here the difference was in
+
+this situation i said let's try
+
+z equals one first and then let's try z
+
+equals zero
+
+after that in this case i did it the
+
+other way around i said let's try
+
+z zero and let's try z equals one and do
+
+you guys see the
+
+significant difference uh that that can
+
+make
+
+because effectively
+
+what very ordering does in a sense
+
+it impacts the order in which you will
+
+visit
+
+the complete states
+
+if you're lucky you visit them in a way
+
+where
+
+you know you hit a solution early if
+
+you're not lucky
+
+you end up visiting the solution very
+
+last in the order
+
+and that's the very ordering now how do
+
+you
+
+do value ordering so here's where people
+
+talk about the notion of a heuristic now
+
+heuristic we use the term before
+
+unfortunately
+
+but in ai the word heuristic is
+
+overloaded
+
+in in the context of a star heroes we
+
+know what that means
+
+it's it's a function h of n that tries
+
+to
+
+estimate the cost uh
+
+of a solution going from a particular
+
+node
+
+but more broadly which is the broader
+
+and more common use of the word
+
+heuristic it's like a rule of thumb
+
+it's kind of an intuitive way of doing
+
+something so we don't know for sure to
+
+choose variable orderings but people
+
+have come up with what they call
+
+heuristics
+
+certain ways that tend to work
+
+and i'm gonna expose you to one
+
+in just a little bit um
+
+but before we do that i want to tell you
+
+about the other notion which is
+
+a variable ordering not just value
+
+ordering so we've seen value ordering
+
+and i hope you're convinced that
+
+it can make a big difference in terms of
+
+the efficiency of your search
+
+and now i'm going to show you the notion
+
+of a value ordering
+
+again we can do examples of value
+
+ordering heuristics
+
+and variable ordering years but those
+
+examples do not matter
+
+what matters is you really understand
+
+the concept because there's
+
+a zillion of these out there of
+
+different heuristics
+
+and which one you end up using in
+
+practice people you know assess that
+
+empirically uh
+
+so someone is saying in in in the three
+
+a y is the second
+
+y ordered from one to zero instead i
+
+mean
+
+i made up this example you could have
+
+ordered them anyway
+
+but i chose these two particular
+
+orderings to make my point
+
+okay folks let me ask you another
+
+question before moving on
+
+in both trees uh every node had two
+
+children
+
+could i have killed some of these
+
+children
+
+remember the technique we just did
+
+before do not generate a child if it's
+
+pirated constraint
+
+in this case if you see what's going on
+
+you will realize that
+
+aside from the leaf nodes none of the
+
+internal nodes in either case
+
+has violated any constraints so i really
+
+had to
+
+divide i had to build the whole tree in
+
+this case every node ended up having two
+
+children
+
+but now remember this was done based on
+
+the variable ordering
+
+x z y
+
+let's try now to build the tree with a
+
+different
+
+variable ordering let's now try
+
+x y z so this is the
+
+var ordering
+
+in this case and here was the var
+
+ordering or variable orderly
+
+what happens in this case
+
+exactly someone is already saying if you
+
+assign the variables in a different
+
+order you could have pruned
+
+more nodes indeed let's try this
+
+i took x and i'm going to say
+
+let's try x equal
+
+0 or 1 now i'm going to go and
+
+do y okay help me out here how many
+
+children
+
+do i generate for i
+
+now i could do y equals
+
+0 and in this case did i
+
+violate any constraint so can i generate
+
+this child
+
+i didn't right x equals zero y equals
+
+zero
+
+that's okay that doesn't violate any
+
+constraint now if i try to do
+
+um this guy here which is y equals one
+
+what happens
+
+i'm violating constraint i have x zero y
+
+one i'm violating the first constraint
+
+which says i must must have x equals y
+
+so i'm not gonna generate this guy
+
+now similarly let's go to z
+
+if you do z equals zero you're good
+
+right you did not violate the constraint
+
+but if you try to do
+
+z equals 1 you violated the constraints
+
+so
+
+that's it and similarly if you go to the
+
+side you're going to find yourself
+
+generating only
+
+one child for y and only one child for z
+
+which is one
+
+and one so actually your search tree now
+
+looks like this
+
+wow
+
+and i i hope this is
+
+dramatic enough to show you the
+
+importance
+
+of the order used for valuable
+
+so again people say let me expand this
+
+by choosing a particular ordering
+
+of variables using some kind of
+
+heuristic i'll quickly show you
+
+a couple of these heuristics next
+
+one for variable ordering one for value
+
+ordering just to give you a sense
+
+okay but there's again many more beyond
+
+what i'm going to be mentioning
+
+and uh okay i this is just a significant
+
+and foundational notion
+
+and has such a dramatic impact on the
+
+efficiency of your search so we have to
+
+go
+
+through it in all of this detail
+
+very good let's take a look at a couple
+
+of complete examples
+
+of these heuristics just to give you a
+
+favor and we'll illustrate these
+
+but again remember guys before we leave
+
+variable ordering impacts the size of
+
+the search tree
+
+because it allows me to prune children
+
+during generation
+
+value ordering does not impact the size
+
+of the tree it's exactly the same tree
+
+but it end up permuting it
+
+so that it impacts the order in which
+
+you visit
+
+candidate states and remember this uh
+
+characterization of these two things
+
+so here's an example of
+
+um a heuristic
+
+all right and this is what we would call
+
+a variable
+
+ordering
+
+heuristic
+
+and this guy is called the one we're
+
+looking at
+
+is basically called most
+
+constrained
+
+variables
+
+so if you have a choice for a variable
+
+to assign next
+
+pick the most constrained variable
+
+and what does this mean well
+
+um let's say let's let's take a look at
+
+a picture and this is our picture here
+
+um i think this should be big enough
+
+uh the idea is let's say i'm coloring
+
+this
+
+particular uh map
+
+and um let me look at my example quickly
+
+here let's see which one i'm using
+
+so what this heuristic basically says
+
+is it choose okay we'll keep
+
+the bold font here choose the
+
+variable
+
+with the few legal values
+
+all right that's what this heuristic
+
+basically
+
+says and
+
+what's happening here is um
+
+is the following let's say i already
+
+have
+
+this guy colored red here i colored the
+
+sky red
+
+and let's say i colored this guy green
+
+and now i have to make a choice
+
+of which one of the next items i have
+
+four of them one two three
+
+four and i want to choose one of them
+
+to assign next so this guy says choose
+
+the variable with the fewest legal
+
+values
+
+at this point uh this guy has only two
+
+legal values
+
+right because this is green
+
+this guy here has how many legal values
+
+this guy here has basically
+
+uh only one exactly
+
+so i would say that this variable here
+
+is more constrained than that one and
+
+then
+
+that's basically the idea and then i
+
+will choose the variable that is
+
+uh more constrained or most constrained
+
+and i'll assign it next again he's going
+
+to say why
+
+i can show an example what's not going
+
+to work
+
+yes these are just heuristics but i just
+
+want to give you
+
+an example of um
+
+of how that works uh and
+
+and now i'm gonna show you an example
+
+heuristic for value ordering
+
+and let's just do this quickly so let's
+
+see some of the colorings
+
+and we'll get rid of this guy here
+
+okay this is
+
+actually today my white
+
+board is as they say acting on me
+
+this should erase it and it is not
+
+erasing it
+
+so let's go and do the
+
+um the other option
+
+which is start all over and this guy
+
+is
+
+all right
+
+okay now we're going to do another
+
+illustration
+
+uh again on this map so this is
+
+for um
+
+this is basically now what we're doing
+
+is
+
+uh we're doing a value ordering
+
+heuristic okay so this is
+
+a value um
+
+ordering
+
+a heuristic and this guy
+
+is basically called least constraining
+
+value
+
+and what does it say in particular
+
+it basically
+
+chooses
+
+value that
+
+rules out
+
+the fewest
+
+values of
+
+remaining
+
+variables all right so let's take a look
+
+concretely
+
+all right and let's say here's my map
+
+and actually i should keep this for
+
+better coloring
+
+let's see this is our map and this guy
+
+was
+
+already colored red and this guy
+
+was already colored green
+
+and let's remember this
+
+here was called sn
+
+and suppose i'm actually picking
+
+a color for this guy here okay so what
+
+are the allowable
+
+colors that i can have i can have either
+
+red
+
+or i can have a
+
+blue these are the two colors that i can
+
+put there
+
+okay and
+
+so remember this is like you know i
+
+decided to assign this variable and i'm
+
+kind of looking at the children of this
+
+guy
+
+so there's a child where i assign this
+
+guy red and there's
+
+the child where i sign this blue but i
+
+cannot do green
+
+the question is which one of these
+
+should i choose
+
+as the value to try first so
+
+the idea is look at this variable
+
+and you see how many values would it
+
+continue
+
+would it end up having if i assign red
+
+or if i assign blue right
+
+so this guy here allows
+
+um how many values for sa
+
+this guy allows
+
+how many values for sa
+
+and this guy allows that many values
+
+for sa give me a number for each how
+
+many values here
+
+for the first one if i assign this guy
+
+red
+
+how many possible values remain for sa
+
+one right uh
+
+values values and in this case if i do
+
+this blue what's the sa
+
+no value zero okay so
+
+in this case uh b would be more
+
+constraining
+
+blue and red would be least constraining
+
+so i will choose uh
+
+in this case uh i will choose this
+
+particular value
+
+okay just uh hopefully hopefully this
+
+gives you some just examples of
+
+what people tend to do here people
+
+invested in this very significantly
+
+and uh they came up with all kinds of
+
+things and there's of course
+
+you can break ties because some of these
+
+heuristics may not be able to
+
+discriminate between things so you have
+
+a secondary heuristic to break ties and
+
+so on if you look at your book you
+
+should find tables
+
+that shows experimental results uh on on
+
+various
+
+consensus inspection problems and what
+
+happens
+
+uh using a plain backtrack search
+
+versus variable ordering value or the
+
+rich heuristics and you will
+
+see there some very dramatic uh
+
+differences
+
+okay uh let's see
+
+we have 20 minutes left
+
+i think we can i mean forward check
+
+forward checking we can do next
+
+hopefully we can finish what we need to
+
+finish but we'll see
+
+folks remember the improvements when we
+
+talked about improvements
+
+uh we talked about we said six of them
+
+or
+
+we already did three so uh
+
+number one was simply just backtrack
+
+search which is just take dfs but do not
+
+generate
+
+those children uh that violate the
+
+constraints
+
+and you backtrack and then we did value
+
+ordering and
+
+variable ordering so this was uh
+
+by the ordering and this was
+
+variable ordering and this was just
+
+backtrack search
+
+okay the next two guys this is called
+
+forward checking
+
+and this is called art consistency
+
+and both of them do similar
+
+things they try to detect bad states
+
+so that as you're building your search
+
+tree and you're going like this
+
+and even though there's so many down
+
+there they would look at this and say
+
+bad guy
+
+drop it
+
+all right that means it already
+
+even though it's a partial variable as
+
+science i can tell you it already
+
+will not have any solution below it um
+
+again this guy when we did the basic
+
+background access we saw how we could do
+
+this very easily by checking constraints
+
+the next two guys forward checking will
+
+detect bad guys that this guy will miss
+
+our consistency will detect bad guys
+
+that this guy will miss let's take a
+
+look it's pretty interesting
+
+so forward checking how does it work
+
+and before i tell you how how does it
+
+work let me give you a bottom line
+
+of how it will see something as bad even
+
+though the previous guy has missed it so
+
+this is
+
+forward checking
+
+famous technique and
+
+uh to illustrate this and let's get
+
+our map all over again and this is our
+
+lovely uh
+
+map coloring problem and
+
+okay i made it big enough hopefully it's
+
+clear okay guys
+
+here's the thing let's say
+
+i went ahead and colored this guy
+
+red okay
+
+and i colored this guy green
+
+so here i am in my search my search tree
+
+right so i started um
+
+and then um for this guy i had two
+
+options i chose this guy
+
+and then i chose this guy there was two
+
+options and
+
+here i am there so what i did is i did
+
+the first
+
+red and then in green
+
+and now i want to decide whether to keep
+
+going now look at this
+
+is any constraint violated in this
+
+in this situation at this point any
+
+constraint
+
+is violated remember the constraints
+
+style
+
+neighboring states so concerned between
+
+these two guys constrained between these
+
+constraints between these so and so on
+
+right
+
+no no constraint is violated so
+
+our primitive backtrack search is good
+
+it's gonna say i'm i'm good i'm gonna
+
+keep going
+
+let me you know look at the children for
+
+this guy
+
+and keep searching but this map is not
+
+colorable
+
+you you cannot finish this right
+
+and and the reason is as you can imagine
+
+uh the only way to color this is blue
+
+that's the only left color and similarly
+
+the only way to color this is blue
+
+because this is green and this is red
+
+but
+
+now you're going to get a violation so
+
+this is not colorable this is bad this
+
+is a bad state
+
+and our basic method cannot detect that
+
+forward checking
+
+will detect that forward checking will
+
+detect that
+
+and how does forward checking detect
+
+that
+
+it's pretty easy it says
+
+look
+
+keep for each variable the
+
+set of possible values
+
+all right so it says maintain
+
+set of
+
+possible values
+
+for each variable
+
+now what does that mean
+
+that means when you assign a value
+
+a value to a variable
+
+okay update
+
+these guys update you know
+
+possible values
+
+for other values
+
+and when do we get a bad guy
+
+declare
+
+that's not to a
+
+bad state
+
+or failure if
+
+some variable
+
+loses all
+
+its values
+
+okay you declare a variable
+
+if a variable loses
+
+all its values now
+
+we can run this example in detail
+
+but okay i actually
+
+messed up here and i'll tell you what i
+
+what i messed up what i messed up is uh
+
+this example
+
+is is correct this is not colorable
+
+and that's bad but actually before we're
+
+checking the guy i'm talking about now
+
+is not gonna see this this will be seen
+
+only by the next guy
+
+which is forward checking uh the guy
+
+we're talking about now
+
+we'll need one more we will have to have
+
+assign this value as
+
+blue okay we're looking at this example
+
+the without blue it is bad state but
+
+forward checking is not gonna see this
+
+uh forward checking we'll see this this
+
+guy is uh obviously also not solvable
+
+not colorable
+
+and this is something that uh forward
+
+checking will detect so let's see how
+
+forward checking will detect that
+
+we can just focus on this variable which
+
+is
+
+uh all right and
+
+initially this guy has three values
+
+right red blue and green
+
+um initially this guy has red
+
+and it has blue
+
+and it has some design of the guys
+
+and you can see what's going to happen
+
+next so
+
+the minute i assign bread here okay
+
+due to the constraints between them i
+
+remove red from the possible values
+
+the minute i assign green here i remove
+
+the sky
+
+and the minute i assign this uh blue
+
+i remove this guy at that point after
+
+these three assignments
+
+sa lost all of its possible values so i
+
+know
+
+that this is not solvable in this case
+
+and
+
+basically i terminate and just like we
+
+did before if you look at
+
+uh this map with these three colors no
+
+constraint
+
+was violated remember every constraint
+
+is between two neighboring states and
+
+none of them is
+
+is violated at this point even though
+
+this problem
+
+is not solvable and forward checking
+
+with this very simple
+
+technique of anytime you assign a
+
+variable go
+
+update the possible values of its
+
+neighbors uh was able to detect that
+
+this is
+
+a problem and then it can
+
+kill this node and say just uh okay we
+
+needed one more node here
+
+there was a child here and we have this
+
+no it will go ahead and say kill this
+
+guy don't do it
+
+okay again sorry about this mess up
+
+there's
+
+so many details in these examples and
+
+now we're down to the last slide so it
+
+looks like we're not going to be able to
+
+do
+
+three uh csp how to solve them but that
+
+is fine uh i have one more technique
+
+which is our consistency and
+
+our consistency will detect the guy we
+
+started with
+
+uh now so okay let me just catch my
+
+breath here again
+
+a step of t and do the last um example
+
+this last example is a little bit more
+
+involved i have to tell you
+
+uh our consistency not as simple as this
+
+guy this is
+
+pretty straightforward the next guy is
+
+uh is basically a little bit more
+
+involved
+
+and we cannot do a full example because
+
+it's too hairy so i will just give you
+
+the gist of it
+
+and let me just do that here
+
+and you
+
+all right let's do this last guy our
+
+consistency
+
+sometimes we'll call it our consistency
+
+and
+
+uh well guess what we're gonna bring
+
+back
+
+our map and
+
+um use this also when i said i want to
+
+make this a little bit
+
+bigger because
+
+all right so so our consistency and
+
+again let's just get
+
+uh to the bottom line here this was the
+
+example i showed you
+
+earlier that this guy
+
+is red and this guy
+
+here is green
+
+and this is already a bad guy so by the
+
+way
+
+uh if if you run forward checking on
+
+this
+
+it will be good with it it will not uh
+
+complain because
+
+in this case forward checking
+
+when you when you assign red to this
+
+you're going to eliminate thread from
+
+that
+
+and when you assign green you're going
+
+to eliminate me so this is left with
+
+blue
+
+and similarly here so you can have blue
+
+and blue
+
+now at this point no vel
+
+has lost all its values no value has
+
+lost all its values so forward checking
+
+says
+
+i'm good but we already know this is a
+
+bad state so
+
+our consistency will in fact
+
+detect that it's problematic now of
+
+course it's very easy in this case
+
+because both of them are blue
+
+but it does even more subtle things
+
+and and the basic idea of this notion of
+
+art consistency
+
+is that it will think harder so really
+
+what happens
+
+between looking at this guy
+
+and just declaring failure when
+
+everything lost the state versus failure
+
+in this case is just you you thought a
+
+little bit more
+
+and what's happening between forward
+
+checking and our consistency which we're
+
+going to explain next is
+
+r consistently thinks a little bit more
+
+and therefore it does more work
+
+but it's still as will show it will do a
+
+polynomial motherboard
+
+as i said this is a little bit more
+
+involved so i'm just going to give you
+
+the gist of it
+
+it's more involved to just run a
+
+complete example but the basic idea
+
+is the following the basic idea is
+
+any time that you have two variables and
+
+let's say these variables
+
+are v and let's say the other guy
+
+is ms revenue and this guy
+
+is when two guys
+
+are involved in a constraint
+
+then you put arcs between them so
+
+there is a constraint between these two
+
+guys so let me put an arc this way and
+
+an arg that way now
+
+there are arcs in the other direction
+
+but let's just focus on these arcs
+
+and the idea is that
+
+i want these arcs
+
+to be consistent
+
+and and what does this mean the arc is
+
+consistent is
+
+for every so let's in general make the
+
+arc
+
+x y for every
+
+possible
+
+value right
+
+for every um
+
+possible value off
+
+why there
+
+is a compatible
+
+value for x okay so at any any point
+
+in the solution or in the search tree
+
+different variables um
+
+they have uh different different
+
+variables have
+
+values and what i
+
+really want to do is actually this
+
+should be
+
+for every value of
+
+why is it very nice okay give me a
+
+second here we're going to become clear
+
+for every value of x there is some
+
+allowed value for
+
+y i want to ensure that so let's take a
+
+look at this
+
+particular example here and let's say it
+
+happens in this case
+
+that the values that this guy has is b
+
+and the values that this guy have is rb
+
+and the values that this guy has is r g
+
+so and let me number this called arc one
+
+and arc two
+
+look at this guy and tell me is arc one
+
+consistent in this case
+
+is arc one consistent remember for the
+
+arc to be consistent
+
+for every value here i should have a
+
+compatible value there
+
+so is this our consistent given that
+
+these are the possible values for for
+
+those guys
+
+yes or no and someone is saying no and
+
+and the reason
+
+is the violation is if i choose uh
+
+for this guy the value r i'm good there
+
+is a compatible value but if i choose
+
+the value blue
+
+then what happens uh i don't have a
+
+compatible value here
+
+okay so this arc is not consistent now
+
+how do you make an arc consistent
+
+so if i tell you this arc here is not
+
+consistent because this value does not
+
+has a compatible value there
+
+how do i make it consistent i can do it
+
+by simply
+
+can i do something here to make the arc
+
+consistent someone suggests something
+
+it has to do with values
+
+remove this value
+
+so i remove i'm gonna remove this value
+
+here and now it's consistent for every
+
+value
+
+here there is a compatible value in it
+
+okay now the other question i have for
+
+you
+
+look at arc 2
+
+is arc too consistent
+
+is arc too consistent now
+
+and people are saying no and i do have a
+
+violation
+
+why because of the red value
+
+the red value here if i choose it i do
+
+not have a compatible value
+
+there so again i can make it consistent
+
+by simply dropping uh
+
+this value okay i
+
+i hope this is clear enough what does it
+
+mean for it for an arc to be consistent
+
+and how i can make an arc consistent i
+
+just want to make
+
+one more uh observation of course we
+
+have to finish the story next time but
+
+the one observation i have to make is
+
+the following
+
+before we made this arc consistent look
+
+at r2 now before we made it
+
+look at r2 is arc too consistent or not
+
+is arc too consistent yes or no
+
+and some are saying yes why well let's
+
+check if
+
+if you choose r you can choose you'd be
+
+good
+
+if you choose green any of these would
+
+be good
+
+if you choose b you can choose r so for
+
+every possible value of detail there is
+
+a compatible value for the head
+
+right so it is consistent but look what
+
+happened
+
+the minute i removed this guy
+
+so i so to make one consistent what
+
+happened to became inconsistent
+
+so it was consistent and then it became
+
+inconsistent
+
+and therefore i had to do more work to
+
+actually make this guy
+
+consistent so let's let's try to settle
+
+with the
+
+with this uh today and we'll have to
+
+finish this next time
+
+the first notion is the notion of an art
+
+being consistent or not
+
+it's very clear here's the definition
+
+the other notion is that if an
+
+arc is not consistent i can always make
+
+it consistent
+
+by dropping values from its table and
+
+the third concept is
+
+when i do that when i make one arc
+
+consistent
+
+arc that was consistent may have become
+
+inconsistent so
+
+the process of arcs consistent
+
+can propagate so uh ensuring
+
+that all of your arcs are consistent may
+
+involve visiting more than one arc
+
+and the bottom line is and and we can
+
+finish the story next time
+
+first if you
+
+do our consistency and you end up
+
+finding that a particular node lots
+
+lost its pollux values as a result
+
+then you know the problem is bad and in
+
+fact if you run our consistency on this
+
+guy
+
+you will find that um an odd one loses
+
+its value and our consistency would look
+
+at this guy and say
+
+bad guy don't go there second
+
+this propagation or ripple effect of
+
+checking arcs and making them consistent
+
+can be bounded
+
+so even though it will uh uh
+
+propagate uh it's simple or not and next
+
+time we will
+
+actually uh do two things
+
+we will uh show you about it's it's easy
+
+to show the world
+
+that this yes does more work than
+
+forward checking but not like terribly
+
+uh too much work and second how it will
+
+be able to detect this
+
+while the other guys did not and that we
+
+will need this to do the last portion of
+
+constrained satisfaction of how do we
+
+solve three
+
+csvs which will actually use the notion
+
+of our consistency for this so you'll
+
+see it even more concretely
+
+okay so we're done for for today folks
+
+uh we're going to leave it at this i'm
+
+now gonna stop the recording and then
+
+uh as usual i will just uh stick around
+
+for a little bit so that we can actually
+
+um you know answer any questions that
+
+you may have all right thank you guys
+
+and i will see you on tuesday
+
