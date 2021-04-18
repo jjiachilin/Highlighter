@@ -5,9 +5,6 @@ import summary
 def get_selected_text(a, b):
     return ["lmao", "hi"]
 
-def get_key_point(a):
-    return "ayyyyyy"
-
 def main():
     if len(sys.argv) != 3:
         raise Exception("Usage: python summarize.py <timestamp_file> <transcript_file>")
@@ -18,7 +15,7 @@ def main():
 
     key_points = []
     for selected_text in selected_texts:
-        key_point = [get_summary(selected_text), get_keywords(selected_text)]
+        key_point = [summary.get_summary(selected_text), summary.get_keywords(selected_text)]
         key_points.append(key_point)
 
     with open("output.txt", "w") as f:
@@ -28,7 +25,7 @@ def main():
             f.write("\n\n")
             f.write("Summary:\n")
             f.write(key_points[i][0])
-            f.write("Keywords:\n")
+            f.write("\nKeywords:\n")
             f.write(key_points[i][1])
             f.write("\n\n")
 
