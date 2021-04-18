@@ -3,21 +3,21 @@ import parse
 import summary
 import highlighted_text as ht
 
-def get_selected_text(a, b):
-    return ["lmao", "hi"]
-
 def main():
     if len(sys.argv) != 3:
         raise Exception("Usage: python summarize.py <timestamp_file> <transcript_file>")
 
     _, timestamp_path, transcript_path = sys.argv
     transcript_json = parse.get_transcript_json(transcript_path)
+    # print(len(transcript_json))
     selected_texts = ht.text_generator(timestamp_path, transcript_json)
+    # print(len(selected_texts))
 
     key_points = []
     for selected_text in selected_texts:
         key_point = [summary.get_summary(selected_text), summary.get_keywords(selected_text)]
         key_points.append(key_point)
+    # print(key_points)
 
     with open("output.txt", "w") as f:
         for i in range(0, len(selected_texts)):
