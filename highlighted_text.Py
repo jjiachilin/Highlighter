@@ -17,10 +17,13 @@ def text_generator(timestamp, script):
 
     stamps = ts_convert(stamps)
 
+    global script_length
+    script_length = len(script)
+    print(script_length)
     index = 0
 
     def finding_ts(stamp,id_count):
-        while True:
+        while id_count<script_length:
             script_stamp = script[id_count]["ts"]
             if stamp[0]>script_stamp[0]:
                 id_count +=1
@@ -30,10 +33,11 @@ def text_generator(timestamp, script):
                     id_count +=1
                     continue
             return id_count
+        return -1
 
     def upper(stamp,id_count):
         stamp=[stamp[0]+1,stamp[1]]
-        while True:
+        while id_count<script_length:
             script_stamp = script[id_count]["ts"]
             if stamp[0]>script_stamp[0]:
                 id_count +=1
@@ -49,7 +53,8 @@ def text_generator(timestamp, script):
             stamp=[0,0]
         else:
             stamp=[stamp[0]-1,stamp[1]]
-        while True:
+        print(id_count,script_length)
+        while id_count<script_length:
             if id_count <= 0:
                 return 0
             script_stamp = script[id_count]["ts"]
@@ -67,6 +72,8 @@ def text_generator(timestamp, script):
     arr = []
     for stamp in stamps:
         index = finding_ts(stamp,index)
+        if index == -1:
+            break
         low = lower(stamp,index)
         high = upper(stamp,index)
         '''f.write()
@@ -86,4 +93,4 @@ def text_generator(timestamp, script):
 if __name__ == "__main__":
     with open("transcript.json") as f:
         transcript = json.load(f)
-        print(text_generator(transcript))
+        print(text_generator('mock.txt',transcript))
