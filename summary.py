@@ -49,7 +49,7 @@ def get_summary(selected_text):
         response = response[1:]
     return response.strip()
 
-# returns an array of strings for keywords
+# returns string of keywords
 def get_keywords(selected_text):
     selected_text = "Text: " + selected_text + " \n\nKeywords:"
     keywords = openai.Completion.create(
@@ -62,7 +62,4 @@ def get_keywords(selected_text):
         presence_penalty=0.0,
         stop=["\n"]
     )
-    return keywords["choices"][0]["text"].replace(" ", "").split(",")
-
-print(get_summary(selected_text))
-print(get_keywords(selected_text))
+    return keywords["choices"][0]["text"].strip()

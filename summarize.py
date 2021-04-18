@@ -26,8 +26,10 @@ def main():
             f.write("Selected Texts:\n")
             f.write(selected_texts[i])
             f.write("\n\n")
-            f.write("Key Point:\n")
-            f.write(key_points[i])
+            f.write("Summary:\n")
+            f.write(key_points[i][0])
+            f.write("Keywords:\n")
+            f.write(key_points[i][1])
             f.write("\n\n")
 
 if __name__ == '__main__':
