@@ -1,12 +1,12 @@
 import json
 
-def text_generator(script):   
+def text_generator(timestamp, script):   
     for time in script:
         hold=time['ts'].split(":")
         time['ts'] = [int(hold[0])*60+int(hold[1]),float(hold[2])]
 
     #reading timestamps
-    with open('mock.txt') as timestamps:
+    with open(timestamp) as timestamps:
         stamps = timestamps.readlines()
 
     #converting timestamp ts format

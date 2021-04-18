@@ -1,6 +1,7 @@
 import sys
 import parse
 import summary
+import highlighted_text as ht
 
 def get_selected_text(a, b):
     return ["lmao", "hi"]
@@ -11,7 +12,7 @@ def main():
 
     _, timestamp_path, transcript_path = sys.argv
     transcript_json = parse.get_transcript_json(transcript_path)
-    selected_texts = get_selected_text(timestamp_path, transcript_json)
+    selected_texts = ht.text_generator(timestamp_path, transcript_json)
 
     key_points = []
     for selected_text in selected_texts:
