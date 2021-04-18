@@ -6,6 +6,11 @@ during a live Zoom meeting from user marked timestamps.
 ## What it does
 Our current iteration is a bare bones prototype command line interface. To use our project the user must first record timestamps during the 
 live meeting and then download the audio transcript later to generate the summaries. Below displays usage:
+
+0. first install requirements.txt
+```
+pip install -r requirements.txt
+```
 1. Enter Zoom meeting and run:
 ```
 python main.py
@@ -26,18 +31,13 @@ Everything else including the command line argument parsing and data pre-process
 
 ## Challenges we ran into
 Our initial idea was very ambitious and had to be scaled back to fit into the timeframe of one weekend. Instead of a full on GUI and live meeting
-summary generation, we had to focus on making all of the components work together too. Also, OpenAI, while very impressive, does not work as well 
-on spontaneous speech without proper syntax. We alleviated this problem by also including keywords in the output which is more deterministic.
+summary generation, we had to focus on making all of the components work together too. Also, OpenAI, while very impressive, does not work as well on spontaneous speech without proper syntax. We alleviated this problem by also including keywords in the output which is more deterministic.
 
 ## Accomplishments that we're proud of
-We are most proud of our idea of leveraging AI to help students like us struggling to adapt to the minor inconveniences of online school. 
-We hope to inspire others to do the same for an increasingly virtual education environment. 
+We are most proud of our idea of leveraging AI to help students like us struggling to adapt to the minor inconveniences of online school. We hope to inspire others to do the same for an increasingly virtual education environment. 
 
 ## What we learned
-In doing research about how to choose text around a timestamp and how to summarize the chosen text, we learned a lot about what the current cutting 
-edge NLP models are capable of. We also learned about the python packages used to stitch everything together, including time, parse, and sys.
+In doing research about how to choose text around a timestamp and how to summarize the chosen text, we learned a lot about what the current cutting edge NLP models are capable of. We also learned about the python packages used to stitch everything together, including time, parse, and sys.
 
 ## What's next for POGGERS AI
-We want to add a user-friendly GUI, a speech-to-text module that will allow live summary generation to save users the trouble of having to wait for 
-a recording to be released and then downloading an html file. We also hope to improve our text selection method, which currently does not rely on an
- ML model.
+We want to add a user-friendly GUI, a speech-to-text module that will allow live summary generation to save users the trouble of having to wait for a recording to be released and then downloading an html file. We also hope to improve our text selection method, which currently does not rely on an ML model.
