@@ -6,7 +6,7 @@ def main():
         print("Error: please specify a transcript file in the command line argument")
         return
     elif len(sys.argv) > 2:
-        print("Error: please specify only one transcript file")
+        print("Error: Please specify only one transcript file")
         return
 
     # reads in the relative path to the file
