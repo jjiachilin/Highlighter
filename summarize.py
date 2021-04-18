@@ -1,5 +1,6 @@
 import sys
 import parse
+import summary
 
 def get_selected_text(a, b):
     return ["lmao", "hi"]
@@ -17,7 +18,7 @@ def main():
 
     key_points = []
     for selected_text in selected_texts:
-        key_point = get_key_point(selected_text)
+        key_point = [get_summary(selected_text), get_keywords(selected_text)]
         key_points.append(key_point)
 
     with open("output.txt", "w") as f:

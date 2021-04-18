@@ -9,7 +9,7 @@ def record_ts(fh):
     fh.write(time_now[:-7] + "\n")
 
 def main():
-    print("Hightlighter has started...")
+    print("Highlighter has started...")
     print("Press 'ctrl+shift+r' to record the timestamp")
     print("Press 'ctrl+shift+q' to exit program")
 
