@@ -31,7 +31,7 @@ Everything else including the command line argument parsing and data pre-process
 
 ## Challenges we ran into
 Our initial idea was very ambitious and had to be scaled back to fit into the timeframe of one weekend. Instead of a full on GUI and live meeting
-summary generation, we had to focus on making all of the components work together too. Also, OpenAI, while very impressive, does not work as well on spontaneous speech without proper syntax. We alleviated this problem by also including keywords in the output which is more deterministic.
+summary generation, we had to focus on making all of the components work together too. Also, OpenAI, while very impressive, does not work as well on spontaneous speech without proper syntax. We alleviated this problem by also including keywords in the output which is more deterministic. After further testing, we also discovered that there was also a lot of noise and occasionally mistranscribed audio in the Zoom audio transcription which resulted in some interesting outputs.
 
 ## Accomplishments that we're proud of
 We are most proud of our idea of leveraging AI to help students like us struggling to adapt to the minor inconveniences of online school. We hope to inspire others to do the same for an increasingly virtual education environment. 
