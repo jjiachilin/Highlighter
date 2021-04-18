@@ -19,7 +19,7 @@ def text_generator(timestamp, script):
 
     global script_length
     script_length = len(script)
-    print(script_length)
+    # print(script_length)
     index = 0
 
     def finding_ts(stamp,id_count):
@@ -53,7 +53,7 @@ def text_generator(timestamp, script):
             stamp=[0,0]
         else:
             stamp=[stamp[0]-1,stamp[1]]
-        print(id_count,script_length)
+        # print(id_count,script_length)
         while id_count<script_length:
             if id_count <= 0:
                 return 0
