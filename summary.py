@@ -2,7 +2,7 @@ import os
 import openai
 import json
 
-openai.api_key = "sk-7feZk6oBEYLBfhLXSyF9wFjUrnBlwgt4J96Gqctp"
+openai.api_key = <insert your api key>
 
 """
 f = open("lecture_subs.txt")
